@@ -6,22 +6,48 @@ namespace MVC_App.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
 
         public IActionResult Index()
         {
-            return View();
+            return View();  //HTTP-Pequest /Home/Index => ASP instantiate HomeController und ruft Index-methode auf
         }
 
         public IActionResult Privacy()
         {
             return View();
         }
+
+        public string Test()
+        {
+            return "Hello World, my first Steps with ASP.Net";
+        }
+
+        public JsonResult TestJson()
+        {
+            var data = new 
+            {
+                Name = "Max Mustermann",
+                Age = 30 
+            };
+            return Json(data);
+        }
+
+        public ViewResult Ansicht()
+        {
+            var data = new
+            {
+                Title = "Mein Title",    //Reiche loose Daten an Ansicht weiter
+                Name = "Max Mustermann",
+                Age = 30
+            };
+            ViewBag.Title = data.Title;
+            ViewData["Title"] = data.Title;  //ViewData überschreibt ViewData["Title"] in der View
+            ViewData["Age"] = data.Age;
+            ViewData["Name"] = data.Name;
+            return View();
+        }
+
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
