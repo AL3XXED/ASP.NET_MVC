@@ -1,65 +1,64 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using MVC_App.Models;
+using System.Diagnostics;
 
-namespace MVC_App.Controllers
+namespace MVCApp.Controllers
 {
     public class HomeController : Controller
     {
 
-        public IActionResult Index()
+
+        // Pfad Home/Index
+        public IActionResult Index() //HTTPRequest /Home/Index => ASP instanziiert den HomeController und ruft dann die Index
         {
-            return View();  //HTTP-Pequest /Home/Index => ASP instantiate HomeController und ruft Index-methode auf
+            return View();
         }
 
+        // Home/Privacy
         public IActionResult Privacy()
         {
             return View();
         }
 
-        public string Test()
+        public string Hallo()
         {
-            return "Hello World, my first Steps with ASP.Net";
+            return "Hallo Welt";
         }
 
-        public JsonResult TestJson()
+        public JsonResult Json()
         {
-            var data = new 
-            {
-                Name = "Max Mustermann",
-                Age = 30 
-            };
+            var data = new { Vorname = "Hans", Nachname = "Müller" };
             return Json(data);
         }
 
         public ViewResult Ansicht()
         {
-            var data = new
+            var data = new { Vorname = "Hans", Nachname = "Müller", Anrede = "Herr" };
+
+            if (new Random().Next(0, 2) == 1)
             {
-                Title = "Mein Title",    //Reiche loose Daten an Ansicht weiter
-                Name = "Max Mustermann",
-                Age = 30
-            };
-            ViewBag.Title = data.Title;
-            ViewData["Title"] = data.Title;  //ViewData überschreibt ViewData["Title"] in der View
-            ViewData["Age"] = data.Age;
-            ViewData["Name"] = data.Name;
-            return View();
+                data = new { Vorname = "Magdalena", Nachname = "Hufschmied", Anrede = "Frau" };
+            }
+            //reiche loose Daten an die Ansicht weiter
+            ViewBag.Name = data.Vorname;
+            ViewData["Vorname"] = data.Vorname;  //ViewData überschreibt ViewData["Name"] ViewBag.Name
+            ViewData["Nachname"] = data.Nachname;
+            ViewData["Anrede"] = data.Anrede;
+
+            return View();  //Strg+M; Strg+G
         }
 
-        // /Home/TestView?contentType=html
-        public IActionResult TestView(string contentType)
+        // /Home/Data?contenType=string
+        public IActionResult Data(string contentType)
         {
+            var data = new { Vorname = "Hans", Nachname = "Müller" };
             switch (contentType)
             {
-                case "html":
-                    return View("TestViewHtml");
-                case "json":
-                    return Json(new { Name = "Max Mustermann", Age = 30 });
-                case "xml":
-                    return Content("<person><name>Max Mustermann</name><age>30</age></person>", "application/xml");
+
+                case "json": return Json(data);
+                case "view":
                 default:
-                    return Content("Invalid content type");
+                    return View("Ansicht");
             }
         }
 

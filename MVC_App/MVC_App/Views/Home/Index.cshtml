@@ -1,6 +1,24 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+	ViewBag.Title = "Home Page";
+
+	var currentHour = DateTime.Now.Hour;
+	var isDarkMode = currentHour >= 18 || currentHour < 6;
 }
+
+@section Styles {
+	@if (isDarkMode)
+	{
+		@* Dark mode styles *@
+		<link rel="stylesheet" href="~/css/dark.css" asp-append-version="true" />
+	}
+	else
+	{
+		@* Light mode styles *@
+		<link rel="stylesheet" href="~/css/light.css" asp-append-version="true" />
+	})
+}
+
+
 
 <div class="text-center">
     <h1 class="display-4">Willkommen</h1>

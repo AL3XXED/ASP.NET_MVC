@@ -2,35 +2,49 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    //Razer: ermöglicht die Einbettung von C# in html-Markup
-    //gib der Seite einen Title
-    ViewData["Title"] = "Ansicht";
+    //Razor: ermöglicht die Einbettung von C# in html-Markup
 
+    //gib der Seite einen title
+    ViewData["Title"] = "Ansicht";
 }
-<!-- HTML-Code wir ausgeliefert vs. cs-Code bleibt auf dem Server -->
+
+<!-- html-Code wird ausgeliefert  vs. cs-Code bleibt auf dem Server -->
 <div>
     <h1>die Ansicht...</h1>
     <h2>Hallo @ViewData["Anrede"] @ViewData["Nachname"]</h2>
-    @if(ViewData["Anrede"] == "Frau")
+    @if (ViewData["Anrede"] == "Frau")
     {
-        <p style="background-color: pink">@ViewData["Vorname"]</p>
+        <p style="background-color:pink;">@ViewData["Vorname"]</p>
     }
     else
     {
-        <p style="background-color: lightblue">@ViewData["Vorname"]</p>
+        <p style="background-color:lightblue;">@ViewData["Vorname"]</p>
     }
 
-    @for(int i = 1; i < 11; i++)
+    @for (int i = 0; i < 10; i++)
     {
+
         <p>@i</p>
     }
 
     <p>@DateTime.Now.ToShortDateString()</p>
 
-    @section Scripts{
-    <script>
-        console.log('hallo welt')
-    </script>
-    <script scr="/js/site.js"></script>
-    }
+
 </div>
+
+@section Styles {
+@*Razor-Kommentar*@
+@*  <link href="/css/site.css" rel="stylesheet" /> *@
+    <style>
+        p {
+            color: red;
+        }
+    </style>
+}
+@section Scripts {
+    <script>
+        console.log('hello world')
+    </script>
+
+    <script src="/js/site.js"></script>
+}
