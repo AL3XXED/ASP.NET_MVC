@@ -2,14 +2,35 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    //Razor: ermöglicht die einbettung von C# in HTML-markup
-	//@page: ermöglicht die Verwendung von Razor-Seiten
-
+    //Razer: ermöglicht die Einbettung von C# in html-Markup
+    //gib der Seite einen Title
     ViewData["Title"] = "Ansicht";
-	
-}
 
+}
+<!-- HTML-Code wir ausgeliefert vs. cs-Code bleibt auf dem Server -->
 <div>
-    <h2>Ansicht</h2>
-    <h3>Hallo Herr @ViewData["Name"]</h3>
+    <h1>die Ansicht...</h1>
+    <h2>Hallo @ViewData["Anrede"] @ViewData["Nachname"]</h2>
+    @if(ViewData["Anrede"] == "Frau")
+    {
+        <p style="background-color: pink">@ViewData["Vorname"]</p>
+    }
+    else
+    {
+        <p style="background-color: lightblue">@ViewData["Vorname"]</p>
+    }
+
+    @for(int i = 1; i < 11; i++)
+    {
+        <p>@i</p>
+    }
+
+    <p>@DateTime.Now.ToShortDateString()</p>
+
+    @section Scripts{
+    <script>
+        console.log('hallo welt')
+    </script>
+    <script scr="/js/site.js"></script>
+    }
 </div>

@@ -47,6 +47,21 @@ namespace MVC_App.Controllers
             return View();
         }
 
+        // /Home/TestView?contentType=html
+        public IActionResult TestView(string contentType)
+        {
+            switch (contentType)
+            {
+                case "html":
+                    return View("TestViewHtml");
+                case "json":
+                    return Json(new { Name = "Max Mustermann", Age = 30 });
+                case "xml":
+                    return Content("<person><name>Max Mustermann</name><age>30</age></person>", "application/xml");
+                default:
+                    return Content("Invalid content type");
+            }
+        }
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

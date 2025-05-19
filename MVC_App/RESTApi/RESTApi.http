@@ -1,0 +1,46 @@
+@RESTApi_HostAddress = http://localhost:5178
+
+GET {{RESTApi_HostAddress}}/items/
+Accept: application/json
+
+###
+
+
+GET {{RESTApi_HostAddress}}/items/2
+Accept: application/json
+
+###
+
+
+GET {{RESTApi_HostAddress}}/items/444
+Accept: application/json
+
+###
+
+POST {{RESTApi_HostAddress}}/items
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "Küche putzen"
+}
+
+###
+
+PUT {{RESTApi_HostAddress}}/items/444
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "Ressource aktualiseren"
+}
+
+###
+
+DELETE {{RESTApi_HostAddress}}/items/2
+Accept: application/json
+
+###
+
+GET {{RESTApi_HostAddress}}/items?seite=5&seitengroesse=5
+Accept: application/json
