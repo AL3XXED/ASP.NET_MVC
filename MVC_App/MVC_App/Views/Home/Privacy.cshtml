@@ -4,3 +4,16 @@
 <h1>@ViewData["Title"]</h1>
 
 <p>Use this page to detail your site's privacy policy.</p>
+
+@section Styles {
+    @if (DateTime.Now.Hour >= 6 || DateTime.Now.Hour <= 20)
+    {
+        @* Dark mode styles *@
+        <link rel="stylesheet" href="~/css/dark.css" asp-append-version="true" />
+    }
+    else
+    {
+        @* Light mode styles *@
+        <link rel="stylesheet" href="~/css/light.css" asp-append-version="true" />
+    }
+}

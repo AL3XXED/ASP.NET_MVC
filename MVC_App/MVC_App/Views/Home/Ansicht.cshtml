@@ -6,6 +6,7 @@
 
     //gib der Seite einen title
     ViewData["Title"] = "Ansicht";
+
 }
 
 <!-- html-Code wird ausgeliefert  vs. cs-Code bleibt auf dem Server -->
@@ -33,13 +34,16 @@
 </div>
 
 @section Styles {
-@*Razor-Kommentar*@
-@*  <link href="/css/site.css" rel="stylesheet" /> *@
-    <style>
-        p {
-            color: red;
-        }
-    </style>
+    @if (DateTime.Now.Hour >= 6 || DateTime.Now.Hour <=20)
+    {
+        @* Dark mode styles *@
+        <link rel="stylesheet" href="~/css/dark.css" asp-append-version="true" />
+    }
+    else
+    {
+        @* Light mode styles *@
+        <link rel="stylesheet" href="~/css/light.css" asp-append-version="true" />
+    }
 }
 @section Scripts {
     <script>

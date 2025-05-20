@@ -1,21 +1,18 @@
 ﻿@{
 	ViewBag.Title = "Home Page";
-
-	var currentHour = DateTime.Now.Hour;
-	var isDarkMode = currentHour >= 18 || currentHour < 6;
 }
 
 @section Styles {
-	@if (isDarkMode)
-	{
-		@* Dark mode styles *@
-		<link rel="stylesheet" href="~/css/dark.css" asp-append-version="true" />
-	}
-	else
-	{
-		@* Light mode styles *@
-		<link rel="stylesheet" href="~/css/light.css" asp-append-version="true" />
-	})
+    @if (DateTime.Now.Hour >= 6 || DateTime.Now.Hour <= 20)
+    {
+        @* Dark mode styles *@
+        <link rel="stylesheet" href="~/css/dark.css" asp-append-version="true" />
+    }
+    else
+    {
+        @* Light mode styles *@
+        <link rel="stylesheet" href="~/css/light.css" asp-append-version="true" />
+    }
 }
 
 

@@ -54,13 +54,15 @@ namespace MVCApp.Controllers
             var data = new { Vorname = "Hans", Nachname = "Müller" };
             switch (contentType)
             {
-
-                case "json": return Json(data);
+                case "json":
+                    return Json(data);
                 case "view":
-                default:
                     return View("Ansicht");
+                default:
+                    return BadRequest("Unbekannter contentType");
             }
         }
+
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
