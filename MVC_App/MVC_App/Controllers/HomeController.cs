@@ -63,7 +63,10 @@ namespace MVCApp.Controllers
             }
         }
 
-
+        public IActionResult Partial()
+        {
+            return PartialView("_MyPartialView");
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
