@@ -13,10 +13,10 @@ namespace MVCApp.Controllers
         {
             todos = new List<_Todos_>()
             {
-        new _Todos_(){ Id = 1, Name = "Kaffee Kochen" },
-        new _Todos_(){ Id = 2, Name = "Zimmer aufräumen" },
-        new _Todos_(){ Id = 3, Name = "Geschirr spülen" }
-    };
+                    new _Todos_(){ Id = 1, Name = "Kaffee Kochen" },
+                    new _Todos_(){ Id = 2, Name = "Zimmer aufräumen" },
+                    new _Todos_(){ Id = 3, Name = "Geschirr spülen" }
+             };
         }
 
         // GET: TodosController
@@ -58,21 +58,34 @@ namespace MVCApp.Controllers
         // GET: TodosController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var todo = todos.FirstOrDefault(t => t.Id == id);
+            if (todo == null)
+            {
+                return NotFound();
+            }
+            return View(todo);
         }
 
         // POST: TodosController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit (int id, _Todos_ model)
         {
             try
             {
+                var existing = todos.FirstOrDefault(t => t.Id == id);
+                if (existing == null)
+                {
+                    return NotFound();
+                }
+
+                existing.Name = model.Name;
+
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                return View(model);
             }
         }
 
