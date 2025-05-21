@@ -1,35 +1,32 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MVC_App.Data;
 using MVC_App.Models;
 using System.Collections.Generic;
 
-namespace MVCApp.Controllers
+namespace MVC_App.Controllers
 {
     public class TodosController : Controller
     {
-        List<_Todos_> todos;
-
-        public TodosController()  //Konstruktor
+        Todo_Service _todoService;
+        public TodosController(Todo_Service service)  //Konstruktor
         {
-            todos = new List<_Todos_>()
-            {
-                    new _Todos_(){ Id = 1, Name = "Kaffee Kochen" },
-                    new _Todos_(){ Id = 2, Name = "Zimmer aufräumen" },
-                    new _Todos_(){ Id = 3, Name = "Geschirr spülen" }
-             };
+            _todoService = service;
         }
 
         // GET: TodosController
         public ActionResult Index()
         {
-            return View(todos);  //Controller übergibt hier das Modell an die Ansicht
+
+
+            return View(_todoService.GetAllTodos());  //Controller übergibt hier das Modell an die Ansicht
         }
 
         // GET: TodosController/Details/5
         public ActionResult Details(int id)
         {
             //bestimme Item mittels Id
-            var item = todos.FirstOrDefault(t => t.Id == id);
+            var item = _todoService.GetTodoById(id);
             return View(item);
         }
 
@@ -43,22 +40,31 @@ namespace MVCApp.Controllers
         // POST: TodosController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(_Todos_ item)
         {
-            try
+            if(ModelState.IsValid)
             {
+                _todoService.AddTodo(item);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            else
             {
-                return View();
+                return View(item);
             }
+            //try
+            //{
+            //    return RedirectToAction(nameof(Index));
+            //}
+            //catch
+            //{
+            //    return View();
+            //}
         }
 
         // GET: TodosController/Edit/5
         public ActionResult Edit(int id)
         {
-            var todo = todos.FirstOrDefault(t => t.Id == id);
+            var todo = _todoService.GetTodoById(id);
             if (todo == null)
             {
                 return NotFound();
@@ -73,7 +79,7 @@ namespace MVCApp.Controllers
         {
             try
             {
-                var existing = todos.FirstOrDefault(t => t.Id == id);
+                var existing = _todoService.GetTodoById(id);
                 if (existing == null)
                 {
                     return NotFound();

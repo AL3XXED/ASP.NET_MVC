@@ -1,7 +1,10 @@
+using MVC_App.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddSingleton(new Todo_Service());
 
 var app = builder.Build();
 
