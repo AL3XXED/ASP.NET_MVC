@@ -40,42 +40,34 @@ namespace MVC_App.Controllers
         // POST: TodosController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(_Todos_ item)
+        public ActionResult Create(_Todos_ newTodo)
         {
             if(ModelState.IsValid)
             {
-                _todoService.AddTodo(item);
+                _todoService.AddTodo(newTodo);
                 return RedirectToAction(nameof(Index));
             }
             else
             {
-                return View(item);
+                return View(newTodo);
             }
-            //try
-            //{
-            //    return RedirectToAction(nameof(Index));
-            //}
-            //catch
-            //{
-            //    return View();
-            //}
         }
 
         // GET: TodosController/Edit/5
         public ActionResult Edit(int id)
         {
-            var todo = _todoService.GetTodoById(id);
-            if (todo == null)
+            var updateTodo = _todoService.GetTodoById(id);
+            if (updateTodo == null)
             {
                 return NotFound();
             }
-            return View(todo);
+            return View(updateTodo);
         }
 
         // POST: TodosController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit (int id, _Todos_ model)
+        public ActionResult Edit (int id, _Todos_ editTodoModel)
         {
             try
             {
@@ -85,35 +77,37 @@ namespace MVC_App.Controllers
                     return NotFound();
                 }
 
-                existing.Name = model.Name;
+                _todoService.UpdateTodo(editTodoModel);
 
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View(model);
+                return View(editTodoModel);
             }
         }
 
         // GET: TodosController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var deleteTodo = _todoService.GetTodoById(id);
+            if (deleteTodo == null)
+            {
+                return NotFound();
+            }
+            return View(deleteTodo);
         }
 
         // POST: TodosController/Delete/5
         [HttpPost]
+        [ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult DeleteConfirmed(int id)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            _todoService.DeleteTodo(id);
+
+            return RedirectToAction(nameof(Index));
         }
+
     }
 }

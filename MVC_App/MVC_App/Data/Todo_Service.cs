@@ -28,6 +28,24 @@ public class Todo_Service
         todos.Add(newTodo);
     }
     //UPDATE
+    public bool UpdateTodo(_Todos_ updatedTodo)
+    {
+        var existingTodo = GetTodoById(updatedTodo.Id);
+        if (existingTodo == null) return false;
+
+        existingTodo.Name = updatedTodo.Name;
+        return true;
+    }
+
 
     //DELETE
+    public  void DeleteTodo(int id)
+    {
+        var todoToDelete = GetTodoById(id);
+        if (todoToDelete != null)
+        {
+            todos.Remove(todoToDelete);
+        }
+  
+    }
 }
