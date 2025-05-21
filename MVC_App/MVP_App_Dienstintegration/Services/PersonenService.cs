@@ -6,14 +6,15 @@ public class PersonenService
 {
     private List<PersonenViewModel> personen = new List<PersonenViewModel>();
 
+    //GET ALL
     public List<PersonenViewModel> GetAll() //=> personen
     {
         return personen;
     }
-
-    public PersonenViewModel? GetById(int PK)
+    //GET BY ID
+    public PersonenViewModel? GetById(int id)
     {
-        return personen.FirstOrDefault(p => p.PK == PK);
+        return personen.FirstOrDefault(p => p.PK == id);
     }
 
     //CREATE
@@ -37,9 +38,9 @@ public class PersonenService
     }
 
     //DELETE
-    public void Delete(int PK)
+    public void Delete(int id)
     {
-        var personToDelete = GetById(PK);
+        var personToDelete = GetById(id);
         if (personToDelete != null)
         {
             personen.Remove(personToDelete);

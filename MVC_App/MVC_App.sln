@@ -5,7 +5,9 @@ VisualStudioVersion = 17.13.36105.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC_App", "MVC_App\MVC_App.csproj", "{02416DB4-A21B-48B5-B945-DDB3C3FBD3F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVP_App_Dienstintegration", "MVP_App_Dienstintegration\MVP_App_Dienstintegration.csproj", "{6CF61D51-BC54-4815-AAC2-08947B28DC5F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC_App_Dienstintegration", "MVP_App_Dienstintegration\MVC_App_Dienstintegration.csproj", "{6CF61D51-BC54-4815-AAC2-08947B28DC5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC_DB", "MVC_DB\MVC_DB.csproj", "{F12B5518-CEF8-47E8-A0B3-5001BD17FF59}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{6CF61D51-BC54-4815-AAC2-08947B28DC5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CF61D51-BC54-4815-AAC2-08947B28DC5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6CF61D51-BC54-4815-AAC2-08947B28DC5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F12B5518-CEF8-47E8-A0B3-5001BD17FF59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F12B5518-CEF8-47E8-A0B3-5001BD17FF59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F12B5518-CEF8-47E8-A0B3-5001BD17FF59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F12B5518-CEF8-47E8-A0B3-5001BD17FF59}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
