@@ -17,12 +17,15 @@ namespace MVC_DB.Controllers
         public ProductsController(AppDbContext context)
         {
             _context = context;
+            context.Database.EnsureCreated();
+            context.Seed();
+
         }
 
         // GET: Products
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Produkt.ToListAsync());
+            return View(await _context.Product.ToListAsync());
         }
 
         // GET: Products/Details/5
@@ -33,7 +36,8 @@ namespace MVC_DB.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Produkt
+            var product = await _context.Product
+                .Include(p => p.Rating)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (product == null)
             {
@@ -73,7 +77,7 @@ namespace MVC_DB.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Produkt.FindAsync(id);
+            var product = await _context.Product.FindAsync(id);
             if (product == null)
             {
                 return NotFound();
@@ -124,7 +128,7 @@ namespace MVC_DB.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Produkt
+            var product = await _context.Product
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (product == null)
             {
@@ -139,10 +143,10 @@ namespace MVC_DB.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var product = await _context.Produkt.FindAsync(id);
+            var product = await _context.Product.FindAsync(id);
             if (product != null)
             {
-                _context.Produkt.Remove(product);
+                _context.Product.Remove(product);
             }
 
             await _context.SaveChangesAsync();
@@ -151,7 +155,7 @@ namespace MVC_DB.Controllers
 
         private bool ProductExists(int id)
         {
-            return _context.Produkt.Any(e => e.Id == id);
+            return _context.Product.Any(e => e.Id == id);
         }
     }
 }
