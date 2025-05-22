@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC_App", "MVC_App\MVC_App.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC_App_Dienstintegration", "MVP_App_Dienstintegration\MVC_App_Dienstintegration.csproj", "{6CF61D51-BC54-4815-AAC2-08947B28DC5F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC_DB", "MVC_DB\MVC_DB.csproj", "{7A7C63D1-7133-E420-4450-6EE1B5AE5FCA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{6CF61D51-BC54-4815-AAC2-08947B28DC5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CF61D51-BC54-4815-AAC2-08947B28DC5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6CF61D51-BC54-4815-AAC2-08947B28DC5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A7C63D1-7133-E420-4450-6EE1B5AE5FCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A7C63D1-7133-E420-4450-6EE1B5AE5FCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A7C63D1-7133-E420-4450-6EE1B5AE5FCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A7C63D1-7133-E420-4450-6EE1B5AE5FCA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using MVC_DB.Data;  
+
 namespace MVC_DB
 {
     public class Program
@@ -8,6 +11,11 @@ namespace MVC_DB
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            //Registrierung des DbContext als DI-Dienst
+            builder.Services.AddDbContext<Data.AppDbContext>(options =>
+                options.UseSqlite(builder.Configuration.GetConnectionString("Default")));
+            //liest die Data Source aus appsettings.json
 
             var app = builder.Build();
 
